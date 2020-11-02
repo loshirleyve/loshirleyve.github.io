@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Shirley Liew&#39;s Website">
 <meta property="og:description" content="内联缓存（Inline Cache） IC 什么是IC ?V8执行函数过程中，会观察函数中的一些调用点（CallSite）上的关键的中间数据，将这些数据缓存起来，当下次执行该函数的时候，V8就可以直接利用这些中间数据，节省了再次获取这些数据的过程，因为V8利用IC,可以有效提升一些重复代码的执行效率。 IC过程IC会为每个函数维护一个反馈向量（FeedBack Vector），反馈向量记录了函数在">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-02T04:21:09.287Z">
+<meta property="og:updated_time" content="2020-11-02T07:36:28.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="V8|内联缓存提升函数执行效率">
 <meta name="twitter:description" content="内联缓存（Inline Cache） IC 什么是IC ?V8执行函数过程中，会观察函数中的一些调用点（CallSite）上的关键的中间数据，将这些数据缓存起来，当下次执行该函数的时候，V8就可以直接利用这些中间数据，节省了再次获取这些数据的过程，因为V8利用IC,可以有效提升一些重复代码的执行效率。 IC过程IC会为每个函数维护一个反馈向量（FeedBack Vector），反馈向量记录了函数在">
@@ -337,6 +337,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/11/02/callback/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          V8|实现回调函数
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/06/post_holiday_blues/" id="article-nav-older" class="article-nav-link-wrap">

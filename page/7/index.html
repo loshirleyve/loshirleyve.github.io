@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Shirley Liew&#39;s Website">
-<meta property="og:url" content="https://loshirleyve.github.io/index.html">
+<meta property="og:url" content="https://loshirleyve.github.io/page/7/index.html">
 <meta property="og:site_name" content="Shirley Liew&#39;s Website">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -32,8 +32,6 @@
 
   
 
-<link rel="stylesheet" href="/assets/css/APlayer.min.css" class="aplayer-style-marker">
-<script src="/assets/js/APlayer.min.js" class="aplayer-script-marker"></script>
 </head>
 
 <body>
@@ -194,20 +192,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-V8-实现回调函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-buildBlog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/callback/">V8|实现回调函数</a>
+      <a class="article-title" href="/2018/05/29/index/">搭建 hexo 博客之旅</a>
     </h1>
   
 
         
-        <a href="/2020/11/02/callback/" class="archive-article-date">
-  	<time datetime="2020-11-02T05:50:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
+        <a href="/2018/05/29/index/" class="archive-article-date">
+  	<time datetime="2018-05-29T08:35:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-29</time>
 </a>
 
         
@@ -217,174 +215,9 @@
       
 
         
-          <p>什么是回调函数？<br>回调函数区别于普通函数，在于它的调用方式。只有当某个函数被作为参数，传递给另一个函数，或者传递给宿主环境，然后该函数在函数内部或者宿主环境中被调用，才被称为回调函数。</p>
-<p>同步回调和异步回调区别？<br>最大区别是：同步回调函数是在执行函数内部被执行的，异步回调函数是在执行函数外部被执行的。</p>
-<p>JavaScript 从一开始就被设计成运行在UI线程中。</p>
-<p>什么是UI线程？<br>UI线程，是指运行窗口的线程，当时运行一个窗口时，无论该页面是 Windows 上的窗口系统，还是 Android 或者 iOS 上的窗口系统，它们都需要处理各种事件，诸如有触发绘制页面的事件，有鼠标点击、拖拽、放大缩小的事件，等等。<br>在页面线程中，当一个事件被触发时，比如用户使用鼠标点击了页面，系统需要将该事件提交给UI线程处理。<br>UI线程每次从消息队列中取出事件，执行事件的过程称为一个任务。流程如下：</p>
-<p style="text-align: center"><img src="UI线程架构.png" width="800px" style="display: inline-block"></p>
-
-<p>XMLHttpRequest触发回调函数的流程：</p>
-<p style="text-align: center"><img src="处理下载事件.png" width="800px" style="display: inline-block"></p>  
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">V8</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/02/callback/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-V8-内联缓存提升函数执行效率" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/null/">V8|内联缓存提升函数执行效率</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/02/null/" class="archive-article-date">
-  	<time datetime="2020-11-02T03:39:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <p>内联缓存（Inline Cache） IC</p>
-<p>什么是IC ?<br>V8执行函数过程中，会观察函数中的一些<strong>调用点（CallSite）</strong>上的关键的中间数据，将这些数据缓存起来，当下次执行该函数的时候，V8就可以直接利用这些中间数据，节省了再次获取这些数据的过程，因为V8利用IC,可以有效提升一些重复代码的执行效率。</p>
-<p>IC过程<br>IC会为每个函数维护一个<strong>反馈向量（FeedBack Vector）</strong>，反馈向量记录了函数在执行过程中的一些关键的中间数据</p>
-<p>注意点：<br>1，单态性能优于多态和超态——尽量默认对象属性不变<br>2，不用过度关注微优化，无须过度担心你的代码是否破坏了隐藏类或IC机制——找出影响性能瓶颈最重要</p>
-
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">V8</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/02/null/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-post-holiday-blues" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/06/post_holiday_blues/">post holiday blues</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/06/post_holiday_blues/" class="archive-article-date">
-  	<time datetime="2020-05-05T23:45:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <p>在假期的最后一两天，逐渐恢复正常的作息时间和饮食习惯。上班后，不要马上开始紧张繁忙的工作，可以花点时间……<br>
+          <blockquote>
+<p>这几天看阮一峰和寥雪峰双峰大神的技术博客，觉得也要搭建起自己的技术博客，以激励自己不断在技术上开疆拓土。</p>
+</blockquote>
           
         
 
@@ -400,630 +233,32 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EMF</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/06/post_holiday_blues/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-前端压缩图片" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/23/null/">前端压缩图片</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/23/null/" class="archive-article-date">
-  	<time datetime="2020-04-23T02:02:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-23</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <p>h5压缩图片<br>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/23/null/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-emf20200301a" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/emf20200301/">詹姆斯稳谈比赛：我们还有提升空间</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/01/emf20200301/" class="archive-article-date">
-  	<time datetime="2020-03-01T04:12:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-01</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <div id="aplayer-ELWGSdzE" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
-            <pre class="aplayer-lrc-content"></pre>
-        </div>
-        <script>
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-ELWGSdzE"),
-            narrow: false,
-            autoplay: false,
-            showlrc: false,
-            music: {
-              title: "詹姆斯稳谈比赛：我们还有提升空间",
-              author: "EMF",
-              url: "/2020/03/01/emf20200301a/final_audio.mp3",
-              pic: "/2020/03/01/emf20200301a/1.png",
-              lrc: ""
-            }
-          });
-          window.aplayers || (window.aplayers = []);
-          window.aplayers.push(ap);
-        </script>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EMF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
+        			<a href="/categories/blog//" class="article-tag-list-link color5">blog</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/01/emf20200301/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-emf20200301" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/01/emf20200301/">周日FUN轻松——校外考察之旅</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/01/emf20200301/" class="archive-article-date">
-  	<time datetime="2020-03-01T03:03:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-01</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <p>  你上小学的时候学校有组织过校外考察吗？去过水族馆吗？是否需要大人陪同？<br>  
-        <div id="aplayer-kwiQfJLE" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
-            <pre class="aplayer-lrc-content"></pre>
-        </div>
-        <script>
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-kwiQfJLE"),
-            narrow: false,
-            autoplay: false,
-            showlrc: false,
-            music: {
-              title: "周日FUN轻松——校外考察之旅",
-              author: "EMF",
-              url: "/2020/03/01/emf20200301/final_audio.mp3",
-              pic: "/2020/03/01/emf20200301/1.png",
-              lrc: ""
-            }
-          });
-          window.aplayers || (window.aplayers = []);
-          window.aplayers.push(ap);
-        </script><br>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EMF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/01/emf20200301/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-emf20200229" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/29/emf20200229/">我想死你了——用英语怎么说</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/29/emf20200229/" class="archive-article-date">
-  	<time datetime="2020-02-29T12:25:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-29</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <div id="aplayer-gdDkxlpm" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
-            <pre class="aplayer-lrc-content"></pre>
-        </div>
-        <script>
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-gdDkxlpm"),
-            narrow: false,
-            autoplay: false,
-            showlrc: false,
-            music: {
-              title: "我想死你了——用英语怎么说",
-              author: "EMF",
-              url: "/2020/02/29/emf20200229/final_audio.mp3",
-              pic: "/2020/02/29/emf20200229/1.png",
-              lrc: ""
-            }
-          });
-          window.aplayers || (window.aplayers = []);
-          window.aplayers.push(ap);
-        </script>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EMF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/29/emf20200229/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/29/index/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/29/index/" class="archive-article-date">
-  	<time datetime="2020-02-29T11:01:09.666Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-29</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/29/index/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-emf338-a" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/04/emf338-a/">Rimowa行李箱，说走就走</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/04/emf338-a/" class="archive-article-date">
-  	<time datetime="2019-12-04T10:41:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <div><img src="http://q1gs2pwb3.bkt.clouddn.com/emf_part1.gif"></div><br>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EMF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/04/emf338-a/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-emf337-b" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/03/emf337-b/">听不见音乐的人和跳舞的人</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/03/emf337-b/" class="archive-article-date">
-  	<time datetime="2019-12-03T10:50:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-03</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <div> /2019/12/03/emf337-b/1.png<br> <img src="http://q1gs2pwb3.bkt.clouddn.com/emf_part1.gif"><br> </div><br>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EMF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/03/emf337-b/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/05/29/index/">展开全文 >></a>
         </p>
       
 
@@ -1055,7 +290,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
     </nav>
   
 
