@@ -194,6 +194,171 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-V8-内联缓存提升函数执行效率" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/02/null/">V8|内联缓存提升函数执行效率</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/02/null/" class="archive-article-date">
+  	<time datetime="2020-11-02T03:39:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+          <p>内联缓存（Inline Cache） IC</p>
+<p>什么是IC ?<br>V8执行函数过程中，会观察函数中的一些<strong>调用点（CallSite）</strong>上的关键的中间数据，将这些数据缓存起来，当下次执行该函数的时候，V8就可以直接利用这些中间数据，节省了再次获取这些数据的过程，因为V8利用IC,可以有效提升一些重复代码的执行效率。</p>
+<p>IC过程<br>IC会为每个函数维护一个<strong>反馈向量（FeedBack Vector）</strong>，反馈向量记录了函数在执行过程中的一些关键的中间数据</p>
+<p>注意点：<br>1，单态性能优于多态和超态——尽量默认对象属性不变<br>2，不用过度关注微优化，无须过度担心你的代码是否破坏了隐藏类或IC机制——找出影响性能瓶颈最重要</p>
+
+        
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">V8</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/02/null/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-post-holiday-blues" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/06/post_holiday_blues/">post holiday blues</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/06/post_holiday_blues/" class="archive-article-date">
+  	<time datetime="2020-05-05T23:45:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+          <p>在假期的最后一两天，逐渐恢复正常的作息时间和饮食习惯。上班后，不要马上开始紧张繁忙的工作，可以花点时间……<br>
+          
+        
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EMF</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/06/post_holiday_blues/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-前端压缩图片" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -285,12 +450,12 @@
       
 
         
-          <div id="aplayer-YKYoPMks" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+          <div id="aplayer-ELWGSdzE" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-YKYoPMks"),
+            element: document.getElementById("aplayer-ELWGSdzE"),
             narrow: false,
             autoplay: false,
             showlrc: false,
@@ -388,12 +553,12 @@
 
         
           <p>  你上小学的时候学校有组织过校外考察吗？去过水族馆吗？是否需要大人陪同？<br>  
-        <div id="aplayer-kcffnZMP" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-kwiQfJLE" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-kcffnZMP"),
+            element: document.getElementById("aplayer-kwiQfJLE"),
             narrow: false,
             autoplay: false,
             showlrc: false,
@@ -490,12 +655,12 @@
       
 
         
-          <div id="aplayer-JWqCdrfU" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+          <div id="aplayer-gdDkxlpm" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-JWqCdrfU"),
+            element: document.getElementById("aplayer-gdDkxlpm"),
             narrow: false,
             autoplay: false,
             showlrc: false,
@@ -886,172 +1051,6 @@
 
 
   
-    <article id="post-emf335l-a" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/emf335l-a/">但愿人长久，千里共婵娟</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/01/emf335l-a/" class="archive-article-date">
-  	<time datetime="2019-12-01T10:23:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <div><img src="http://q1gs2pwb3.bkt.clouddn.com/emf_part1.gif"></div><br>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EMF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/01/emf335l-a/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-emf335-c" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/emf335-c/">周日 FUN 轻松——怎么买张飞机票就这么难？</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/01/emf335-c/" class="archive-article-date">
-  	<time datetime="2019-12-01T09:09:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-01</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <div><img src="http://q1gs2pwb3.bkt.clouddn.com/emf_part1.gif"></div><br>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">EMF</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">English</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/01/emf335-c/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1146,15 +1145,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dart</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Flutter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+                <a href="javascript:void(0)" class="js-tag color3">V8</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dart</a>
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1202,15 +1205,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">nvm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安装</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">

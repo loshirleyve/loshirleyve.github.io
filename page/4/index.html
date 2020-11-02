@@ -192,6 +192,166 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-批量下载多个音频并合成" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/17/null/">批量下载多个音频并合成</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/17/null/" class="archive-article-date">
+  	<time datetime="2019-11-17T11:07:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+          <a id="more"></a>
+<p>源代码<br><figure class="highlight python"><figcaption><span>word转html</span><a href="/downloads/code/downloadFile.py">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> aiohttp</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">audio_path = <span class="string">''</span></span><br><span class="line">final_audio = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并多个音频文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_file</span><span class="params">()</span>:</span></span><br><span class="line">    path = os.path.join(os.getcwd(), <span class="string">'audio'</span>)</span><br><span class="line">    audios = os.listdir(path)  <span class="comment"># 得到文件夹下的所有文件名称</span></span><br><span class="line">    <span class="keyword">global</span> final_audio</span><br><span class="line">    final_audio = open(<span class="string">'final_audio.mp3'</span>, <span class="string">'wb'</span>)</span><br><span class="line">    <span class="keyword">for</span> audioIdx <span class="keyword">in</span> range(len(audios)):</span><br><span class="line">        name = str(audioIdx) + <span class="string">'.mp3'</span></span><br><span class="line">        print(audioIdx)</span><br><span class="line">        audiocode = open(os.path.join(path, name), <span class="string">'rb'</span>)</span><br><span class="line">        final_audio.write(audiocode.read())</span><br><span class="line">        audiocode.close()</span><br><span class="line">    final_audio.flush()</span><br><span class="line">    final_audio.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 声明为异步函数</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">job</span><span class="params">(session, url, idx)</span>:</span></span><br><span class="line">    <span class="comment"># 获得名字</span></span><br><span class="line">    <span class="comment"># name = url.split('/')[-1]</span></span><br><span class="line">    suffix = url.split(<span class="string">'.'</span>)[<span class="number">-1</span>]</span><br><span class="line">    name = str(idx) + <span class="string">'.'</span> + suffix</span><br><span class="line">    <span class="comment"># 触发到await就切换，等待get到数据</span></span><br><span class="line">    audio = <span class="keyword">await</span> session.get(url)</span><br><span class="line">    <span class="comment"># 读取内容</span></span><br><span class="line">    audiocode = <span class="keyword">await</span> audio.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 写入至文件</span></span><br><span class="line">    <span class="keyword">with</span> open(audio_path + <span class="string">"/"</span> + str(name), <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(audiocode)</span><br><span class="line">        <span class="keyword">return</span> str(url)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(loop, fileurl)</span>:</span></span><br><span class="line">    <span class="comment"># 建立会话 session</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">with</span> aiohttp.ClientSession() <span class="keyword">as</span> session:</span><br><span class="line">        <span class="comment"># 建立所有任务</span></span><br><span class="line">        tasks = [loop.create_task(job(session, fileurl[_], _)) <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(fileurl))]</span><br><span class="line">        print(len(fileurl))</span><br><span class="line">        <span class="comment"># 触发await，等待任务完成</span></span><br><span class="line">        finished, unfinished = <span class="keyword">await</span> asyncio.wait(tasks)</span><br><span class="line">        <span class="comment"># 获取所有结果</span></span><br><span class="line">        <span class="comment"># all_results = [r.result() for r in finished]</span></span><br><span class="line">        <span class="comment"># print("ALL RESULT:"+str(all_results))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">done_callback</span><span class="params">(futu)</span>:</span></span><br><span class="line">    print(<span class="string">'Done'</span>)</span><br><span class="line">    merge_file()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init</span><span class="params">()</span>:</span></span><br><span class="line">    path = os.getcwd()  <span class="comment"># 文件夹目录</span></span><br><span class="line">    <span class="keyword">global</span> audio_path</span><br><span class="line">    audio_path = os.path.join(path, <span class="string">'audio'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果目录存在，直接删除</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(audio_path):</span><br><span class="line">        shutil.rmtree(audio_path)</span><br><span class="line"></span><br><span class="line">    os.mkdir(audio_path)</span><br><span class="line"></span><br><span class="line">    url = [</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30ar459__mst1.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30ar45t__mst2.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30ar461__mst3.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30ar4ue__mst4.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30ar4ul__mst5.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30arh7c__words.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30armjy__1.1Y1.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k3132wap__2.1Y2%2520%25E5%25A4%258D%25E5%2588%25B6.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k31330ha__3.1Y3%2520%25E5%25A4%258D%25E5%2588%25B6.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30atgfg__ok0.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30atgfu__ok1.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30atgym__ok2.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30ath0v__ok3.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30athla__ok4.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30athnr__ok5.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30athpi__ok6.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30au5f0__take0.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30au5fb__take1.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30au5ku__take2.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30au5lx__take3.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30aui60__tree.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30avcek__rp1.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30avcev__rp2.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30avckl__rp3.mp3"</span>,</span><br><span class="line">        <span class="string">"https://delta-oss.ivykid.com/base/__k30avcss__rp4.mp3"</span>]</span><br><span class="line"></span><br><span class="line">    loop = asyncio.get_event_loop()</span><br><span class="line">    futu = asyncio.ensure_future(main(loop, url))</span><br><span class="line">    futu.add_done_callback(done_callback)</span><br><span class="line">    <span class="comment"># loop.run_until_complete(main(loop, url))</span></span><br><span class="line">    loop.run_until_complete(futu)</span><br><span class="line">    loop.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">init()</span><br></pre></td></tr></table></figure></p>
+<p>参考：<br><a href="https://cloud.tencent.com/developer/news/430102" target="_blank" rel="noopener">超简单超详细python小文件、大文件、批量下载教程</a><br><a href="https://blog.csdn.net/zhe_ge_sha_shou/article/details/89081974" target="_blank" rel="noopener">Python合并两个音频文件</a><br><a href="https://segmentfault.com/a/1190000008814676" target="_blank" rel="noopener">Python 的异步 IO：Asyncio 简介</a><br><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017970488768640" target="_blank" rel="noopener">廖雪峰asyncio</a><br><a href="https://blog.csdn.net/shufac/article/details/51697381" target="_blank" rel="noopener">Python实现文本文件的合并</a><br><a href="https://blog.csdn.net/qq_32869419/article/details/80214913" target="_blank" rel="noopener">python3批量下载文件</a></p>
+
+        
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/17/null/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-git提示LF会被替换成CRLF" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/17/git/">关于git提示&#34;warning LF will be replaced by CRLF&#34;终极解答</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/17/git/" class="archive-article-date">
+  	<time datetime="2019-11-17T06:37:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-17</time>
+</a>
+
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+        
+          <h3 id="一、发现问题"><a href="#一、发现问题" class="headerlink" title="一、发现问题"></a>一、发现问题</h3><p>windows平台下使用git add，git deploy 文件时经常出现“warning: LF will be replaced by CRLF” 的提示。<br>
+          
+        
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/17/git/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Pycharm2019最新激活注册码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -813,183 +973,6 @@
 
 
   
-    <article id="post-用python写一个将word转为html的本地可执行程序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/21/word2html/">用python写一个将word转为html的本地可执行程序</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/21/word2html/" class="archive-article-date">
-  	<time datetime="2019-10-21T06:15:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <p>目标：一键批量把 word 转为 html<br>优势：可嵌入到项目里，通过命令执行；可本地直接双击执行；可定制化；<br>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">word2html</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">exe</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/21/word2html/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Flutter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/30/flutter/">Flutter</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/30/flutter/" class="archive-article-date">
-  	<time datetime="2019-09-30T07:11:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-30</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-        
-          <h2 id="Flutter-介绍"><a href="#Flutter-介绍" class="headerlink" title="Flutter 介绍"></a>Flutter 介绍</h2><h2 id="Windows-上面搭建-Flutter-Android-运行环境"><a href="#Windows-上面搭建-Flutter-Android-运行环境" class="headerlink" title="Windows 上面搭建 Flutter Android 运行环境"></a>Windows 上面搭建 Flutter Android 运行环境</h2>
-          
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Flutter</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Flutter//" class="article-tag-list-link color3">Flutter</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/30/flutter/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -1084,15 +1067,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Dart</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Flutter</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">promise</a>
+                <a href="javascript:void(0)" class="js-tag color3">V8</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dart</a>
+                <a href="javascript:void(0)" class="js-tag color3">promise</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1140,15 +1127,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">nvm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安装</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
