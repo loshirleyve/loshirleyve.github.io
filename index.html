@@ -228,11 +228,9 @@
           <p>什么是回调函数？<br>回调函数区别于普通函数，在于它的调用方式。只有当某个函数被作为参数，传递给另一个函数，或者传递给宿主环境，然后该函数在函数内部或者宿主环境中被调用，才被称为回调函数。</p>
 <p>同步回调和异步回调区别？<br>最大区别是：同步回调函数是在执行函数内部被执行的，异步回调函数是在执行函数外部被执行的。</p>
 <p>JavaScript 从一开始就被设计成运行在UI线程中。</p>
-<p>什么是UI线程？<br>UI线程，是指运行窗口的线程，当时运行一个窗口时，无论该页面是 Windows 上的窗口系统，还是 Android 或者 iOS 上的窗口系统，它们都需要处理各种事件，诸如有触发绘制页面的事件，有鼠标点击、拖拽、放大缩小的事件，等等。<br>在页面线程中，当一个事件被触发时，比如用户使用鼠标点击了页面，系统需要将该事件提交给UI线程处理。<br>UI线程每次从消息队列中取出事件，执行事件的过程称为一个任务。流程如下：</p>
-<p style="text-align: center"><img src="UI线程架构.png" width="800px" style="display: inline-block"></p>
+<p>什么是UI线程？<br>UI线程，是指运行窗口的线程，当时运行一个窗口时，无论该页面是 Windows 上的窗口系统，还是 Android 或者 iOS 上的窗口系统，它们都需要处理各种事件，诸如有触发绘制页面的事件，有鼠标点击、拖拽、放大缩小的事件，等等。<br>在页面线程中，当一个事件被触发时，比如用户使用鼠标点击了页面，系统需要将该事件提交给UI线程处理。<br>UI线程每次从消息队列中取出事件，执行事件的过程称为一个任务。流程如下：<br><img src="/2020/11/02/callback/UI线程架构.png"><br><!-- <p style="text-align: center"><img src="UI线程架构.png" width="800px" style="display: inline-block"></p> --></p>
+<p>XMLHttpRequest触发回调函数的流程：<br><img src="/2020/11/02/callback/处理下载事件.png"><br><!-- <p style="text-align: center"><img src="处理下载事件.png" width="800px" style="display: inline-block"></p>   --></p>
 
-<p>XMLHttpRequest触发回调函数的流程：</p>
-<p style="text-align: center"><img src="处理下载事件.png" width="800px" style="display: inline-block"></p>  
         
 
       
@@ -294,12 +292,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/null/">V8|内联缓存提升函数执行效率</a>
+      <a class="article-title" href="/2020/11/02/inlineCash/">V8|内联缓存提升函数执行效率</a>
     </h1>
   
 
         
-        <a href="/2020/11/02/null/" class="archive-article-date">
+        <a href="/2020/11/02/inlineCash/" class="archive-article-date">
   	<time datetime="2020-11-02T03:39:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-02</time>
 </a>
 
@@ -339,7 +337,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/02/null/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/11/02/inlineCash/">展开全文 >></a>
         </p>
       
 
